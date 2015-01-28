@@ -2,6 +2,7 @@ typedef struct node Node;
 typedef Node * Node_ptr;
 
 typedef struct linked_list LinkedList;
+typedef LinkedList * linkedList_ptr;
 
 struct linked_list{
 	Node_ptr head;
@@ -15,3 +16,4 @@ struct node{
 };
 
 LinkedList createList(void);
+Node * create_node(void *data);

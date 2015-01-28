@@ -1,15 +1,19 @@
 #include "linkedlist.h"
+#include "expr_assert.h"
 #include <stdio.h>
 
 
-int main(int argc, char const *argv[]){ 
-	Node_ptr new_node = createNode();
-	printf("%p In main\n",new_node);
-	return 0;
-}
+void test_create_a_linkedList_it_return_head_NULL(){
+	void *head = NULL,*tail = NULL;
+	int count = 0;
+	LinkedList expected = createList();
+	assertEqual((int)head,((int)expected.head));
+	assertEqual((int)tail,((int)expected.head));
+};
 
-/*void test_create_a_linkedlist_that_contain_student_detail(){
-	Node *new_node;
-	new_node = createNode();
-	printf("%p>>>>",new_node);
-};*/
+void test_create_a_linkedList_it_return_with_0_element(){
+	void *head = NULL,*tail = NULL;
+	int count = 0;
+	LinkedList expected = createList();
+	assertEqual(count,((int)expected.count));
+};

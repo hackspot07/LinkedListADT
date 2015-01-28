@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void* createNode(void){
-	Node *new_node = malloc(sizeof(Node));
-	printf("%p in function\n",new_node);
-	
-	return new_node;
+
+LinkedList createList(void){
+	LinkedList *new_list = malloc(sizeof(LinkedList));
+	new_list->head = NULL;
+	new_list->tail = NULL;
+	new_list->count = 0;
+	return *new_list;
 };

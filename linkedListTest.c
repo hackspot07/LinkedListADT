@@ -38,21 +38,38 @@ void test_create_a_node_it_contain_data_Parmatma_and_NULL(){
 
 void test_add_to_list_add_the_element_into_list_and_return_1(){
 	int id = 23,count;
-	LinkedList student = createList();
-	Node *expected = create_node((void*)id);
-	count = add_to_list(&student,expected);
+	LinkedList list = createList();
+	Node_ptr expected = create_node((void*)id);
+	count = add_to_list(&list,expected);
 
 	assertEqual(count,1);
 	free(expected);
 };
 
 void test_add_to_list_add_the_element_into_list_and_give_count_1(){
-	char* id = "hello";
+	char* name = "hello";
+	char *name1 = "gello";
 	int count;
-	LinkedList student = createList();
-	Node *expected = create_node((void*)id);
-	count = add_to_list(&student,expected);
+	Node_ptr expected1,expected;
 
-	assertEqual(count,1);
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	count = add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	count = add_to_list(&list,expected1);
+
+	assertEqual(count,2);
 	free(expected);
+};
+
+void test_get_first_element_will_return_23(){
+	int *result,id=23;
+	LinkedList list = createList();
+	Node *nodeToInsert = create_node((void*)id);
+	add_to_list(&list,nodeToInsert);
+	result = get_first_element(list);
+
+	assertEqual(*result,23);
 };

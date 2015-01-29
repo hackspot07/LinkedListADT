@@ -29,20 +29,22 @@ Node * create_node(void *data){
 	}
 };
 
-int add_to_list(LinkedList* studentList, Node* student){
-	Node_ptr walker = studentList->head;
-	if(walker == NULL){
-		studentList->head = student;
-		studentList->tail = student;
-		return ++studentList->count;
+int add_to_list(LinkedList* list, Node* node){
+	if(list->head == NULL)
+		list->head = node;
+
+    while(list->head->next != NULL){ 
+		list->head = *(list->head->next);
+		list->count++;
 	}
-	while(walker != NULL){
-		walker = *student->next;
-		if(walker==NULL){
-			walker = student;
-			studentList->tail = student;
-		}
-		studentList->count++;
-	}
-	return studentList->count;
+	list->tail = node;
+	list->count++;
+    return list->count;
+};
+    
+
+void *get_first_element(LinkedList list){
+	Node_ptr element;
+	element = list.head;
+	return element;
 };

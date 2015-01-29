@@ -3,6 +3,7 @@ typedef Node * Node_ptr;
 
 typedef struct linked_list LinkedList;
 typedef LinkedList * linkedList_ptr;
+typedef void Operation(void*); 
 
 struct linked_list{
 	Node_ptr head;
@@ -12,7 +13,7 @@ struct linked_list{
 
 struct node{
 	void* data;
-	Node_ptr *next;
+	Node_ptr next;
 };
 
 
@@ -21,4 +22,4 @@ Node * create_node(void *data);
 int add_to_list(LinkedList *,Node *);
 void *get_first_element(LinkedList list);
 void *get_last_element(LinkedList list);
-void traverse(LinkedList, void (*)(void *data));
+void traverse(LinkedList list,Operation* operate);

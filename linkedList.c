@@ -32,11 +32,8 @@ Node * create_node(void *data){
 int add_to_list(LinkedList* list, Node* node){
 	if(list->head == NULL)
 		list->head = node;
-
-    while(list->head->next != NULL){ 
-		list->head = *(list->head->next);
-		list->count++;
-	}
+    else
+    	list->tail->next = node;
 	list->tail = node;
 	list->count++;
     return list->count;
@@ -49,4 +46,11 @@ void *get_first_element(LinkedList list){
 
 void *get_last_element(LinkedList list){
 	return list.tail;
+};
+
+void traverse(LinkedList list,Operation* operate){
+	while(list.head != NULL){
+		operate(&(list.head->data));
+		list.head = list.head->next;
+	}
 };

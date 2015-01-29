@@ -61,6 +61,23 @@ void test_add_to_list_add_the_element_into_list_and_return_1(){
 	free(expected);
 };
 
+void test_add_to_list_add_the_student_record_into_list(){
+	Student stu1;
+	LinkedList list = createList();
+	int count;
+	Node* st;
+	Node_ptr expected;
+	stu1.id = count;
+	stu1.name = "Parma";
+	stu1.score = 20;
+	expected = create_node(&stu1);
+	count = add_to_list(&list,expected);
+	st = get_first_element(list);
+
+	assertEqual(count,1);
+	free(expected);
+};
+
 void test_add_to_list_add_the_element_into_list_and_give_count_1(){
 	char* name = "hello";
 	char *name1 = "gello";
@@ -217,6 +234,54 @@ void test_getElementAt_will_give_hello_at_0(){
 	result = getElementAt(list,0);
 
 	assertEqual(strcmp("hello",(char*)result),0);
+	free(expected);
+	free(expected1);
+};
+
+
+void test_indexof_will_give_index_2_for_45(){
+	LinkedList list = createList();
+	int data = 45,index;
+	list = initialize(list);
+	index = indexOf(list,(void*)data);
+
+	assertEqual(index,2);
+};
+
+void test_indexof_will_give_index_0_for_23(){
+	LinkedList list = createList();
+	int data = 23,index;
+	list = initialize(list);
+	index = indexOf(list,(void*)data);
+
+	assertEqual(index,0);
+};
+
+void test_indexof_will_give_index_minus_1_for_minus_23(){
+	LinkedList list = createList();
+	int data = -23,index;
+	list = initialize(list);
+	index = indexOf(list,(void*)data);
+
+	assertEqual(index,-1);
+};
+
+void test_indexOf_will_give_1_for_gello(){
+	char* name = "hello";
+	char *name1 = "gello";
+	int result;
+	char* data = "gello";
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	result = indexOf(list,(void*)data);
+
+	assertEqual(result,1);
 	free(expected);
 	free(expected1);
 };

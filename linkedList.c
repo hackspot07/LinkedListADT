@@ -67,3 +67,14 @@ void * getElementAt(LinkedList list, int index){
 	}
 	return NULL;
 };
+
+int indexOf(LinkedList list,void* data){
+	int index = 0;
+	while(list.head != NULL){
+		if(list.head->data == data)
+			return index;
+		index++;
+		list.head = list.head->next;
+	}
+	return -1;
+};

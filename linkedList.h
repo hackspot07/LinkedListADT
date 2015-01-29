@@ -1,5 +1,6 @@
 typedef struct node Node;
 typedef Node * Node_ptr;
+typedef struct student Student;
 
 typedef struct linked_list LinkedList;
 typedef LinkedList * linkedList_ptr;
@@ -16,6 +17,11 @@ struct node{
 	Node_ptr next;
 };
 
+struct student{
+	int id;
+	char* name;
+	int score;
+};
 
 LinkedList createList(void);
 Node * create_node(void *data);
@@ -24,3 +30,4 @@ void *get_first_element(LinkedList list);
 void *get_last_element(LinkedList list);
 void traverse(LinkedList list,Operation* operate);
 void * getElementAt(LinkedList list, int index);
+int indexOf(LinkedList list, void *node);

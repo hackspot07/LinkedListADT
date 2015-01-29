@@ -67,9 +67,26 @@ void test_add_to_list_add_the_element_into_list_and_give_count_1(){
 void test_get_first_element_will_return_23(){
 	int *result,id=23;
 	LinkedList list = createList();
-	Node *nodeToInsert = create_node((void*)id);
+	Node_ptr nodeToInsert = create_node((void*)id);
 	add_to_list(&list,nodeToInsert);
 	result = get_first_element(list);
 
 	assertEqual(*result,23);
+	free(nodeToInsert);
+};
+
+void test_get_last_will_return_45(){
+	int *result,score1=23,score2=45;
+	LinkedList list = createList();
+	Node_ptr nodeToInsert,nodeToInsert1;
+	nodeToInsert = create_node((void*)score1);
+	add_to_list(&list,nodeToInsert);
+
+	nodeToInsert1 = create_node((void*)score2);
+	add_to_list(&list,nodeToInsert1);
+
+	result = get_last_element(list);
+
+	assertEqual(*result,45);
+	free(nodeToInsert);
 };

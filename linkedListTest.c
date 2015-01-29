@@ -37,20 +37,22 @@ void test_create_a_node_it_contain_data_Parmatma_and_NULL(){
 };
 
 void test_add_to_list_add_the_element_into_list_and_return_1(){
-	int id = 23,yes;
+	int id = 23,count;
 	LinkedList student = createList();
 	Node *expected = create_node((void*)id);
-	yes = add_to_list(&student,expected);
+	count = add_to_list(&student,expected);
 
-	assertEqual(yes,1);
+	assertEqual(count,1);
+	free(expected);
 };
 
 void test_add_to_list_add_the_element_into_list_and_give_count_1(){
 	char* id = "hello";
-	int yes;
+	int count;
 	LinkedList student = createList();
 	Node *expected = create_node((void*)id);
-	yes = add_to_list(&student,expected);
+	count = add_to_list(&student,expected);
 
-	assertEqual(student.count,1);
+	assertEqual(count,1);
+	free(expected);
 };

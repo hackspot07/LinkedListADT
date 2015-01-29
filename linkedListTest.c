@@ -77,22 +77,22 @@ void test_add_to_list_add_the_element_into_list_and_give_count_1(){
 };
 
 void test_get_first_element_will_return_23(){
-	void *result;
+	Node *result;
 	int id=23;
 	LinkedList list = createList();
 	list = initialize(list);
 	result = get_first_element(list);
 
-	assertEqual(*(int*)result,23);
+	assertEqual((int)result->data,23);
 };
 
 void test_get_last_will_return_45(){
-	void *result;
+	Node *result;
 	LinkedList list = createList();
 	list = initialize(list);
 	result = get_last_element(list);
 
-	assertEqual(*(int*)result,45);
+	assertEqual((int)result->data,45);
 };
 
 void increament(void* data){
@@ -100,23 +100,75 @@ void increament(void* data){
 };
 
 void test_traverse_gives_all_elements_by_increament_followed_by_one(){
-	void *result;
+	Node *result;
 	LinkedList list = createList();
 	list = initialize(list);
 
 	traverse(list,increament);
 	result = get_first_element(list);
 
-	assertEqual(*(int*)result, 24);
+	assertEqual((int)result->data, 24);
 };
 
 void test_traverse_gives_all_elements_by_increament_followed_by_one_get_last_46(){
-	void *result;
+	Node *result;
 	LinkedList list = createList();
 	list = initialize(list);
 
 	traverse(list,increament);
 	result = get_last_element(list);
 
-	assertEqual(*(int*)result, 46);
+	assertEqual((int)result->data, 46);
+};
+
+void changeCase(void* data){
+	int i = 0;
+	char* string1 = malloc(sizeof(char*));
+	strcpy(string1,*(char**)data);
+	while(string1[i]!='\0'){ 
+		*((char*)string1) = *((char*)string1) - 32;
+		i++;
+	}
+};
+
+void test_traverse_gives_string_into_uppercase(){
+	char* name = "hello";
+	char *name1 = "gello";
+	Node *result;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	traverse(list,changeCase);
+
+	result = get_first_element(list);
+
+	assertEqual(strcmp("hello",result->data),0);
+	free(expected);
+	free(expected1);
+};
+
+void test_traverse_gives_string_into_uppercase_of_last_node(){
+	char* name = "hello";
+	char *name1 = "gello";
+	Node *result;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	traverse(list,changeCase);
+
+	result = get_last_element(list);
+
+	assertEqual(strcmp("gello",result->data),0);
+	free(expected);
+	free(expected1);
 };

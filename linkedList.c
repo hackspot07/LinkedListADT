@@ -46,7 +46,7 @@ void *get_first_element(LinkedList list){
 
 void *get_last_element(LinkedList list){
 	return list.tail;
-};
+}
 
 void traverse(LinkedList list,Operation* operate){
 	while(list.head != NULL){

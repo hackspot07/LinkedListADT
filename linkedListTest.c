@@ -175,9 +175,48 @@ void test_traverse_gives_string_into_uppercase_of_last_node(){
 	free(expected1);
 };
 
-// void test_getelementAt_will_give_45_at_2(){
-// 	LinkedList list = createList();
-// 	list = initialize(list);
+void test_getelementAt_will_give_45_at_2(){
+	LinkedList list = createList();
+	void* result;
+	list = initialize(list);
+	result = getElementAt(list,2);
 
-// };
+	assertEqual((int)result,45);
+};
 
+void test_getelementAt_will_give_NULL_at_4(){
+	LinkedList list = createList();
+	void* result;
+	list = initialize(list);
+	result = getElementAt(list,4);
+
+	assertEqual((int)result,0);
+};
+
+void test_getelementAt_will_give_NULL_at_minus_1(){
+	LinkedList list = createList();
+	void* result;
+	list = initialize(list);
+	result = getElementAt(list,-1);
+
+	assertEqual((int)result,0);
+};
+
+void test_getElementAt_will_give_hello_at_0(){
+	char* name = "hello";
+	char *name1 = "gello";
+	void *result;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	result = getElementAt(list,0);
+
+	assertEqual(strcmp("hello",(char*)result),0);
+	free(expected);
+	free(expected1);
+};

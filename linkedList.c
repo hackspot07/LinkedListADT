@@ -54,3 +54,7 @@ void traverse(LinkedList list,Operation* operate){
 		list.head = list.head->next;
 	}
 };
+
+void * getElementAt(LinkedList list, int index){
+	return NULL;
+};

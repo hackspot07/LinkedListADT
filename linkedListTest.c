@@ -5,14 +5,17 @@
 #include <stdlib.h>
 
 LinkedList initialize(LinkedList list){
-	int score1=23,score2=45;
-	Node_ptr nodeToInsert,nodeToInsert1;
+	int score1=23,score2=-12,score3=45;
+	Node_ptr nodeToInsert,nodeToInsert1,nodeToInsert2;
 
 	nodeToInsert = create_node((void*)score1);
 	add_to_list(&list,nodeToInsert);
 
 	nodeToInsert1 = create_node((void*)score2);
 	add_to_list(&list,nodeToInsert1);
+
+	nodeToInsert2 = create_node((void*)score3);
+	add_to_list(&list,nodeToInsert2);
 
 	return list;
 };
@@ -125,10 +128,9 @@ void changeCase(void* data){
 	int i = 0;
 	char* string1 = malloc(sizeof(char*));
 	strcpy(string1,*(char**)data);
-	while(string1[i]!='\0'){ 
-		*((char*)string1) = *((char*)string1) - 32;
-		i++;
-	}
+	for(i=0;string1[i]!='\0';i++)
+		string1[i] = string1[i] - 32;
+	*(char**)data = string1;
 };
 
 void test_traverse_gives_string_into_uppercase(){
@@ -147,7 +149,7 @@ void test_traverse_gives_string_into_uppercase(){
 
 	result = get_first_element(list);
 
-	assertEqual(strcmp("hello",result->data),0);
+	assertEqual(strcmp("HELLO",result->data),0);
 	free(expected);
 	free(expected1);
 };
@@ -168,7 +170,14 @@ void test_traverse_gives_string_into_uppercase_of_last_node(){
 
 	result = get_last_element(list);
 
-	assertEqual(strcmp("gello",result->data),0);
+	assertEqual(strcmp("GELLO",result->data),0);
 	free(expected);
 	free(expected1);
 };
+
+// void test_getelementAt_will_give_45_at_2(){
+// 	LinkedList list = createList();
+// 	list = initialize(list);
+
+// };
+

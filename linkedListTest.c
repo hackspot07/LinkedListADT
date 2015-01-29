@@ -77,21 +77,22 @@ void test_add_to_list_add_the_element_into_list_and_give_count_1(){
 };
 
 void test_get_first_element_will_return_23(){
-	int *result,id=23;
+	void *result;
+	int id=23;
 	LinkedList list = createList();
 	list = initialize(list);
 	result = get_first_element(list);
 
-	assertEqual(*result,23);
+	assertEqual(*(int*)result,23);
 };
 
 void test_get_last_will_return_45(){
-	int *result;
+	void *result;
 	LinkedList list = createList();
 	list = initialize(list);
 	result = get_last_element(list);
 
-	assertEqual(*result,45);
+	assertEqual(*(int*)result,45);
 };
 
 void increament(void* data){
@@ -99,23 +100,23 @@ void increament(void* data){
 };
 
 void test_traverse_gives_all_elements_by_increament_followed_by_one(){
-	int *result;
+	void *result;
 	LinkedList list = createList();
 	list = initialize(list);
 
 	traverse(list,increament);
 	result = get_first_element(list);
 
-	assertEqual(*result, 24);
+	assertEqual(*(int*)result, 24);
 };
 
 void test_traverse_gives_all_elements_by_increament_followed_by_one_get_last_46(){
-	int *result;
+	void *result;
 	LinkedList list = createList();
 	list = initialize(list);
 
 	traverse(list,increament);
 	result = get_last_element(list);
 
-	assertEqual(*result, 46);
+	assertEqual(*(int*)result, 46);
 };

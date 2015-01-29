@@ -44,13 +44,9 @@ int add_to_list(LinkedList* list, Node* node){
     
 
 void *get_first_element(LinkedList list){
-	Node_ptr first;
-	first = list.head;
-	return first;
+	return list.head;
 };
 
 void *get_last_element(LinkedList list){
-	Node_ptr last;
-	last = list.tail;
-	return last;
+	return list.tail;
 };

@@ -78,3 +78,34 @@ int indexOf(LinkedList list,void* data){
 	}
 	return -1;
 };
+
+void * deleteElementAt(LinkedList* list, int index){
+	int i=0;
+	Node_ptr deleteNode = list->head;
+	Node_ptr temp;
+	
+	if(index<0 || index >= list->count || list->head == NULL){ 
+		printf("%s\n","Empty List OR index not found");
+		return NULL;
+	}
+
+	if(index==0){
+		list->head = list->head->next;
+		list->count--;
+		if(list->count==0)
+			list->tail = NULL;
+		return deleteNode->data;
+	}
+	while(i <= index){
+		temp = deleteNode;
+		deleteNode = deleteNode->next;
+		if(deleteNode->next==NULL)
+			list->tail = temp;
+		if(i==index-1){ 
+			list->count--;
+			return deleteNode->data;
+		}
+		i++;
+	}
+	return deleteNode->data;
+};	

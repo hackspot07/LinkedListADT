@@ -31,3 +31,4 @@ void *get_last_element(LinkedList list);
 void traverse(LinkedList list,Operation* operate);
 void * getElementAt(LinkedList list, int index);
 int indexOf(LinkedList list, void *node);
+void * deleteElementAt(LinkedList* list, int index);

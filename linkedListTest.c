@@ -285,3 +285,72 @@ void test_indexOf_will_give_1_for_gello(){
 	free(expected);
 	free(expected1);
 };
+
+
+void test_delete_will_return_deleted_element_of_index_1(){
+	Node_ptr result;
+	void *result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,1);
+	result1 = getElementAt(list,0);
+
+	assertEqual((int)result,-12);
+	assertEqual((int)result1,23);
+};
+
+void test_delete_will_return_deleted_element_of_index_0(){
+	Node_ptr result;
+	void *result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,0);
+	result1 = getElementAt(list,0);
+
+	assertEqual((int)result,23);
+	assertEqual((int)result1,-12);
+};
+
+void test_delete_will_return_deleted_element_of_index_2(){
+	Node_ptr result;
+	void *result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,2);
+	result1 = getElementAt(list,0);
+
+	assertEqual((int)result,45);
+	assertEqual((int)result1,23);
+};
+
+void test_delete_will_return_deleted_tail_element_and_fix_another_tail(){
+	Node_ptr result;
+	Node_ptr result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,2);
+	result1 = get_last_element(list);
+
+	assertEqual((int)result,45);
+	assertEqual(*(int*)result1,-12);
+};
+
+void test_deleteElemetAt_will_delete_hello_and_give_gell_atFirst_index(){
+	char* name = "hello";
+	char *name1 = "gello";
+	Node_ptr expected1,expected,result;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+
+	result = deleteElementAt(&list,0);
+
+	assertEqual(strcmp((char*)result,"hello"),0);
+	free(expected);
+	free(expected1);
+};
+

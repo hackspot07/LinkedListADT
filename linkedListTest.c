@@ -430,3 +430,27 @@ void test_deleteElementAt_delete_head_element_and_assign_next_element_int(){
 	s1 = getElementAt(list,2);
 	assertEqual(*(int*)s1,55);
 }
+
+void test_delete_will_return_NULL_at_minus_index(){
+	Node_ptr result;
+	Node_ptr result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,-2);
+	result1 = get_last_element(list);
+
+	assertEqual((int)result,0);
+	assertEqual(*(int*)result1,45);
+};
+
+void test_delete_will_return_NULL_at_max_index_that_does_not_exists(){
+	Node_ptr result;
+	Node_ptr result1;
+	LinkedList list = createList();
+	list = initialize(list);
+	result = deleteElementAt(&list,5);
+	result1 = get_last_element(list);
+
+	assertEqual((int)result,0);
+	assertEqual(*(int*)result1,45);
+};

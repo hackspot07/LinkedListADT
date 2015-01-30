@@ -114,3 +114,16 @@ int asArray(LinkedList list, void** array){
 	}
 	return i;
 };
+
+LinkedList * filter(LinkedList list,Predicate* test){
+	LinkedList *result = malloc(sizeof(LinkedList));
+	int i;
+	*result = createList();
+	for(i=0;i<list.count;i++){
+		if(test(list.head->data)){
+			add_to_list(result,list.head);
+		}
+		list.head = list.head->next;
+	}
+	return result;
+};

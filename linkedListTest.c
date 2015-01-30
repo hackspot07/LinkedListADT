@@ -27,12 +27,19 @@ void test_create_a_linkedList_it_return_head_NULL(){
 	assertEqual(0,(int)expected.tail);
 };
 
+
 void test_create_a_linkedList_it_return_with_0_element(){
 	LinkedList expected = createList();
 	assertEqual(0,((int)expected.count));
 };
 
-void test_create_a_node_it_contain_id_45_and_NULL(){
+void test_Node_field_of_created_node_should_be_null() {
+	Node_ptr node = create_node(NULL);
+	assert(node->next == NULL);
+	free(node);
+}
+
+void test_create_a_node_it_contain_id_45(){
 	int data = 45;
 	Node_ptr expected = create_node((void*)data);
 
@@ -498,4 +505,89 @@ void test_asArray_will_contain_lenth_2_and_hello_atFirst_index(){
 	assertEqual(strcmp(*(char**)array[1],"gello"),0);
 	free(expected);
 	free(expected1);
+};
+
+int isOdd(void* element){
+	return ((int)element%2==0)?0:1;
+};
+
+void test_filter_returns_list_of_data_23_and_45(){
+	LinkedList list = createList();
+	LinkedList *result;
+	list = initialize(list);
+	result = filter(list,isOdd);
+
+	assertEqual((int)result->count,2);
+	free(result);
+};
+
+void test_filter_returns_list_of_data_23_and_45_and_head_will_be_23(){
+	LinkedList list = createList();
+	LinkedList *result;
+	list = initialize(list);
+	result = filter(list,isOdd);
+
+	assertEqual((int)result->count,2);
+	assertEqual((int)result->head->data,23);
+	free(result);
+};
+
+void test_filter_returns_list_of_data_23_and_45_and_last_will_be_45(){
+	LinkedList list = createList();
+	LinkedList *result;
+	list = initialize(list);
+	result = filter(list,isOdd);
+
+	assertEqual((int)result->count,2);
+	assertEqual(*(int*)get_last_element(*result),45);
+	free(result);
+};
+int lessThan(void* element){
+	return (strlen((char*)element)>5)?1:0;
+};
+
+void test_filter_will_return_lenth_1_and_gellooo_atFirst(){
+	char* name = "hello";
+	char *name1 = "gellooo",*element;
+	int length;
+	LinkedList *result;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	result = filter(list,lessThan);
+	strcpy(element,get_first_element(*result));
+
+	assertEqual((int)result->count,1);
+	assertEqual(strcmp(*(char**)element,"gellooo"),0);
+	free(expected);
+	free(expected1);
+	free(result);
+};
+
+void test_filter_will_return_lenth_1_and_gellooo_atLast(){
+	char* name = "hello";
+	char *name1 = "gellooo",*element;
+	int length;
+	LinkedList *result;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+	result = filter(list,lessThan);
+	strcpy(element,get_last_element(*result));
+
+	assertEqual((int)result->count,1);
+	assertEqual(strcmp(*(char**)element,"gellooo"),0);
+	free(expected);
+	free(expected1);
+	free(result);
 };

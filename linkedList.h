@@ -4,7 +4,8 @@ typedef struct student Student;
 
 typedef struct linked_list LinkedList;
 typedef LinkedList * linkedList_ptr;
-typedef void Operation(void*); 
+typedef void Operation (void*); 
+typedef int Predicate (void*);
 
 struct linked_list{
 	Node_ptr head;
@@ -33,3 +34,4 @@ void * getElementAt(LinkedList list, int index);
 int indexOf(LinkedList list, void *node);
 void * deleteElementAt(LinkedList* list, int index);
 int asArray(LinkedList list, void** array);
+LinkedList * filter(LinkedList list,Predicate* test);

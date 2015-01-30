@@ -105,3 +105,12 @@ void * deleteElementAt(LinkedList* list, int index){
 	}
 	return NULL;
 };	
+
+int asArray(LinkedList list, void** array){
+	int i;
+	for(i=0;i<list.count;i++){
+		array[i] = list.head;
+		list.head = list.head->next;
+	}
+	return i;
+};

@@ -32,3 +32,4 @@ void traverse(LinkedList list,Operation* operate);
 void * getElementAt(LinkedList list, int index);
 int indexOf(LinkedList list, void *node);
 void * deleteElementAt(LinkedList* list, int index);
+int asArray(LinkedList list, void** array);

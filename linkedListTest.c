@@ -444,8 +444,7 @@ void test_delete_will_return_NULL_at_minus_index(){
 };
 
 void test_delete_will_return_NULL_at_max_index_that_does_not_exists(){
-	Node_ptr result;
-	Node_ptr result1;
+	Node_ptr result,result1;
 	LinkedList list = createList();
 	list = initialize(list);
 	result = deleteElementAt(&list,5);
@@ -453,4 +452,50 @@ void test_delete_will_return_NULL_at_max_index_that_does_not_exists(){
 
 	assertEqual((int)result,0);
 	assertEqual(*(int*)result1,45);
+};
+
+
+void test_asArray_contains_3_elements_reference(){
+	int length,array[3];
+	LinkedList list = createList();
+	list = initialize(list);
+	length = asArray(list,(void**)array);
+
+	assertEqual(length,3);
+};
+
+void test_asArray_contains_3_elements_1st_element_will_be_23(){
+	int length;
+	int* array[3];
+	LinkedList list = createList();
+	list = initialize(list);
+	length = asArray(list,(void**)array);
+	
+	assertEqual(length,3);
+	assertEqual(*(int*)array[0],23);
+	assertEqual(*(int*)array[1],-12);
+	assertEqual(*(int*)array[2],45);
+};
+
+void test_asArray_will_contain_lenth_2_and_hello_atFirst_index(){
+	char* name = "hello";
+	char *name1 = "gello";
+	char* array[2];
+	int length;
+	Node_ptr expected1,expected;
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	add_to_list(&list,expected1);
+
+	length = asArray(list,(void**)array);
+	assertEqual(length,2);
+
+	assertEqual(strcmp(*(char**)array[0],"hello"),0);
+	assertEqual(strcmp(*(char**)array[1],"gello"),0);
+	free(expected);
+	free(expected1);
 };

@@ -4,4 +4,5 @@
 *.exe.*
 *assert.h
 *_h.c
-*.sh
+*._Test.c
+

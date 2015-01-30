@@ -354,3 +354,79 @@ void test_deleteElemetAt_will_delete_hello_and_give_gell_atFirst_index(){
 	free(expected1);
 };
 
+void test_delete_string_from_a_list_by_given_index_1_and_gello_will_be_nomore_there(){
+	char* name = "hello";
+	char *name1 = "gello";
+	char *name2 = "ghello";
+	int count,index=1,element;
+	void* result;
+	Node_ptr expected,expected1,expected2;
+
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	count = add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	count = add_to_list(&list,expected1);
+
+	expected2 = create_node((void*)name2);
+	count = add_to_list(&list,expected2);
+
+	result = deleteElementAt(&list,index);
+	element = indexOf(list,(void*)name1);
+	
+	assertEqual(strcmp((char*)result,"gello"),0);
+	assertEqual(element,-1);
+};
+
+void test_delete_string_from_a_list_by_given_index_1_replace_the_value_with_next_value(){
+	char* name = "hello";
+	char *name1 = "gello";
+	char *name2 = "ghello";
+	int count,index=1,element;
+	void* result;
+	Node_ptr expected,expected1,expected2;
+
+	LinkedList list = createList();
+
+	expected = create_node((void*)name);
+	count = add_to_list(&list,expected);
+	
+	expected1 = create_node((void*)name1);
+	count = add_to_list(&list,expected1);
+
+	expected2 = create_node((void*)name2);
+	count = add_to_list(&list,expected2);
+
+	result = deleteElementAt(&list,index);
+	element = indexOf(list,(void*)name);
+	assertEqual(strcmp((char*)result,"gello"),0);
+	assertEqual(element,0);
+};
+
+
+void test_deleteElementAt_delete_head_element_and_assign_next_element_int(){
+	LinkedList list = createList();
+	int score1 =2,*s1 ,score2 =5,score3 = 45,score4=55,score5 = 78;
+	Node *n1,*n2,*n3,*n4,*n5,*n6;
+
+	n1 = create_node(&score1);
+	add_to_list(&list,n1);
+	n2 = create_node(&score2);
+	add_to_list(&list,n2);
+	n3 = create_node(&score3);
+	add_to_list(&list,n3);
+	n4 = create_node(&score4);
+	add_to_list(&list,n4);
+	n5 = create_node(&score5);
+	add_to_list(&list,n5);
+
+	s1 = getElementAt(list,2);
+	assertEqual(*(int*)s1,45);
+	
+	n6 = deleteElementAt(&list,2);
+	
+	s1 = getElementAt(list,2);
+	assertEqual(*(int*)s1,55);
+}

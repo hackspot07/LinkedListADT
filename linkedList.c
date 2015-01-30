@@ -99,13 +99,15 @@ void * deleteElementAt(LinkedList* list, int index){
 	while(i <= index){
 		temp = deleteNode;
 		deleteNode = deleteNode->next;
-		if(deleteNode->next==NULL)
-			list->tail = temp;
-		if(i==index-1){ 
+		if(i==index-1){
 			list->count--;
+			if(deleteNode->next==NULL)
+				list->tail = temp;
+			else
+				temp->next = deleteNode->next;
 			return deleteNode->data;
-		}
+		};
 		i++;
 	}
-	return deleteNode->data;
+	return NULL;
 };	

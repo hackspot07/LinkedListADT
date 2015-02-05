@@ -5,20 +5,14 @@
 
 
 LinkedList createList(void){
-	LinkedList *new_list = malloc(sizeof(LinkedList));
-	if(new_list != NULL){ 
-		new_list->head = NULL;
-		new_list->tail = NULL;
-		new_list->count = 0;
-		return *new_list;
-	}else{
-		printf("%s\n","Memory does not exist");
-		return *new_list;
-	}
+	LinkedList *new_list = calloc(sizeof(LinkedList),1);
+	new_list->head = new_list->tail = NULL;
+	new_list->count = 0;
+	return *new_list;
 };
 
 Node * create_node(void *data){
-	Node *new_node = malloc(sizeof(Node));
+	Node *new_node = calloc(sizeof(Node),1);
 	if(new_node != NULL){ 
 		new_node->data = data;
 		new_node->next = NULL;
@@ -30,10 +24,11 @@ Node * create_node(void *data){
 };
 
 int add_to_list(LinkedList* list, Node* node){
+	Node_ptr prev = list->head;
 	if(list->head == NULL)
 		list->head = node;
     else
-    	list->tail->next = node;
+   		list->tail->next = node;
 	list->tail = node;
 	list->count++;
     return list->count;
@@ -80,31 +75,31 @@ int indexOf(LinkedList list,void* data){
 };
 
 
-void* deleteHead(LinkedList *list,int index){
+void * deleteElementAt(LinkedList * list, int index){
+	int i= 0;
 	Node_ptr walker = list->head;
-	list->head = list->head->next;
-	if(list->count==0)
-		list->tail = NULL;
-	return walker->data;
-};
+	Node_ptr temp = NULL;
+	void* deletedElement;
 
-void * deleteElementAt(LinkedList* list, int index){
-	int i=0;
-	Node_ptr walker = list->head;
-	Node_ptr temp;
-	if(index==0)
-		return deleteHead(list,0);
-	for(i=0;i < list->count;i++){
+	if(list->count <=index || index<0)
+		return NULL;
+
+	for(i=0; i< index; i++){
 		temp = walker;
 		walker = walker->next;
-		if(i==index-1){
-			list->count--;
-			(walker->next==NULL)?(list->tail = temp):(temp->next = walker->next);
-			return walker->data;
-		};
+	}	
+
+	if(list->tail==walker){
+		list->tail=temp;
 	}
-	return NULL;
-};	
+
+	deletedElement = walker->data;
+	(temp)?(temp->next =walker->next):(list->head =list->head->next);
+
+	list->count--;
+	free(walker);
+	return deletedElement;
+};
 
 int asArray(LinkedList list, void** array){
 	int i;

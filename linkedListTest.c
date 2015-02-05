@@ -22,7 +22,7 @@ LinkedList initialize(LinkedList list){
 
 void test_create_a_linkedList_it_return_head_NULL(){
 	int count = 0;
-	LinkedList expected = createList();
+	LinkedList 	expected = createList();
 	assertEqual(0,(int)expected.head);
 	assertEqual(0,(int)expected.tail);
 };
@@ -357,8 +357,6 @@ void test_deleteElemetAt_will_delete_hello_and_give_gell_atFirst_index(){
 	result = deleteElementAt(&list,0);
 
 	assertEqual(strcmp((char*)result,"hello"),0);
-	free(expected);
-	free(expected1);
 };
 
 void test_delete_string_from_a_list_by_given_index_1_and_gello_will_be_nomore_there(){
